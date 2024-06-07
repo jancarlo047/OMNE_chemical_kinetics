@@ -1,11 +1,20 @@
-function check_values_in_range(vector)
-    if all(0 <= x <= 1 for x in vector)
-        println("Todos los valores están en el rango [0,1].")
-    else
-        println("No todos los valores están en el rango [0,1].")
-    end
-end
+using Test
+include("generalfunctions.jl")
+# Definimos la ecuación diferencial
+f(t, x, c) = x
 
-# Prueba la función con tu vector
-vector = [0.1, 0.2, 0.3, 0.4, 0.5]
-check_values_in_range(vector)
+# Parámetros para sol_ODE_param
+c = ones(100) # puedes ajustar esto según tus necesidades
+x₀ = 1.0
+t₀ = 0.0
+h = 0.01
+N = 100
+method = "RK4"
+
+# Llamamos a sol_ODE_param
+x, t = sol_ODE_param(f, c, x₀, t₀, h, N, method = method)
+
+# Comprobamos que la solución es correcta
+# La solución analítica para esta ecuación diferencial es e^t
+@test all(abs.(x .- exp.(t)) .< 1e-3)
+

@@ -1,5 +1,7 @@
 #include("generalfunctions.jl")
 include("generalChemFunc.jl")
+include("graphics.jl")
+
 using Plots
 
 

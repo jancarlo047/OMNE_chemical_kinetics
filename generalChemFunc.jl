@@ -35,7 +35,7 @@ function dimerization(t₀::Real, χ₀₁::Real, χ₀₂::Real, k₁::Real, k�
     f₂ = (t, χ) -> 2*k₁*nₜ*((1 - χ)^2) - k₂*χ
 
     # Resolvemos las ecuaciones diferenciales para cada especie
-    χ₁, χ₂, t₁ = sol_two_diff_eq_ord(f₁, f₂, χ₀₁, χ₀₂, t₀, h, N, method=method)
+    χ₁, χ₂, t₁ = sol_two_ODE(f₁, f₂, χ₀₁, χ₀₂, t₀, h, N, method=method)
     return χ₁, χ₂, t₁
 end
 
